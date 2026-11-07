@@ -1,0 +1,52 @@
+{
+  "name": "@proofwork/web",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack --port 38471 --hostname 0.0.0.0",
+    "dev:turbo": "next dev --port 38471 --hostname 0.0.0.0",
+    "build": "next build --webpack",
+    "start": "next start --port 38471 --hostname 0.0.0.0",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test:fund": "tsx --test src/lib/fund/match-fund.test.ts",
+    "test:public-url": "tsx --test src/lib/public-url.test.ts",
+    "test": "tsx --test src/lib/fund/match-fund.test.ts src/lib/public-url.test.ts src/lib/session-pot.test.ts src/lib/format.test.ts src/lib/countdown.test.ts src/lib/adapters/live-error.test.ts"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.9.0",
+    "@heroui/react": "^3.2.7",
+    "@heroui/styles": "^3.2.7",
+    "@proofwork/shared": "*",
+    "@rainbow-me/rainbowkit": "^2.2.11",
+    "@tanstack/react-query": "^5.106.1",
+    "@worldcoin/idkit": "^4.6.0",
+    "@x402/core": "^2.30.0",
+    "@x402/evm": "^2.30.0",
+    "@x402/svm": "^2.30.0",
+    "class-variance-authority": "^0.7.1",
+    "cn": "^0.5.2",
+    "lucide-react": "^1.69.0",
+    "next": "16.4.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-markdown": "^10.1.0",
+    "rehype-sanitize": "^6.0.0",
+    "remark-gfm": "^4.0.1",
+    "shadcn": "^4.23.0",
+    "tw-animate-css": "^1.4.0",
+    "viem": "^2.57.16",
+    "wagmi": "^2.19.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.5",
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.5",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
