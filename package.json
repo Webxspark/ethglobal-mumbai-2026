@@ -1,0 +1,40 @@
+{
+  "name": "proofwork",
+  "version": "0.2.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "prepare": "npm run build -w @proofwork/shared --if-present",
+    "dev": "npm run dev -w @proofwork/web",
+    "dev:web": "npm run dev -w @proofwork/web",
+    "dev:mcp": "npm run dev -w @proofwork/mcp",
+    "wait:mcp": "wait-on -t 60000 http-get://127.0.0.1:38472/health",
+    "dev:all": "concurrently -k -n mcp,web -c cyan,magenta \"npm run dev:mcp\" \"npm run wait:mcp && npm run dev:web\"",
+    "start": "npm run dev:all",
+    "start:prod": "concurrently -k -n mcp,web -c cyan,magenta \"npm run dev:mcp\" \"npm run wait:mcp && npm run build -w @proofwork/web && npm run start -w @proofwork/web\"",
+    "mcp:stdio": "npm run mcp:stdio -w @proofwork/mcp",
+    "build": "npm run build -w @proofwork/shared && npm run build -w @proofwork/web && npm run build -w @proofwork/mcp",
+    "lint": "npm run lint -w @proofwork/web --if-present && npm run lint -w @proofwork/mcp --if-present && npm run lint -w @proofwork/shared --if-present",
+    "typecheck": "npm run typecheck -w @proofwork/shared --if-present && npm run typecheck -w @proofwork/web --if-present && npm run typecheck -w @proofwork/mcp --if-present",
+    "test": "npm run test -w @proofwork/shared --if-present",
+    "smoke:mcp": "npm run smoke -w @proofwork/mcp",
+    "smoke:stdio": "npm run smoke:stdio -w @proofwork/mcp",
+    "smoke:connect": "npm run smoke:connect -w @proofwork/mcp",
+    "smoke:verify": "npm run smoke:verify -w @proofwork/mcp",
+    "smoke:ui": "npm run smoke:ui -w @proofwork/mcp",
+    "demo:judge": "node scripts/demo-judge.mjs",
+    "docker:up": "docker compose up --build",
+    "forge:test": "cd packages/contracts && forge test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.5",
+    "cross-env": "^10.1.0",
+    "wait-on": "^9.5.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
