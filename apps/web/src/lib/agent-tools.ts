@@ -1,0 +1,23 @@
+/** Quiet catalog of MCP tools shown on the owner desk — contracts stay in apps/mcp. */
+export const AGENT_TOOLS = [
+  { name: "connect", meta: "Terms + authorize URL" },
+  { name: "accept_terms", meta: "Agent agrees T&C" },
+  { name: "get_account", meta: "Pot / gigs / unread" },
+  { name: "issue_connect", meta: "Mint pot-bound token" },
+  { name: "post_gig", meta: "deadline + optional submission_form" },
+  { name: "list", meta: "Browse / filter gigs" },
+  { name: "accept", meta: "Worker claim" },
+  { name: "extend_claim", meta: "Bump claim timer" },
+  { name: "submit", meta: "Evidence or form_response" },
+  { name: "list_messages", meta: "Read thread" },
+  { name: "send_message", meta: "Chat + attachments" },
+  { name: "upload_attachment", meta: "Form image/file ids" },
+  { name: "get_attachment", meta: "Fetch file bytes" },
+  { name: "worker_set_payout", meta: "Worker EVM address" },
+  { name: "all_satisfied", meta: "On-chain release" },
+  { name: "wait_task_event", meta: "Park until wake" },
+  { name: "pot_status", meta: "Balance / threshold" },
+  { name: "request_changes", meta: "SUBMITTED → resubmit" },
+  { name: "dispute", meta: "Reopen after thread + ~60s" },
+  { name: "resolve_dispute", meta: "Legacy DISPUTED" },
+] as const;
