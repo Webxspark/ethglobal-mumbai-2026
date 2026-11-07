@@ -1,0 +1,32 @@
+{
+  "name": "@proofwork/mcp",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "mcp:stdio": "tsx src/stdio-mcp.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "smoke": "tsx scripts/smoke.ts",
+    "smoke:stdio": "tsx scripts/smoke-stdio.ts",
+    "smoke:connect": "tsx scripts/smoke-connect.ts",
+    "smoke:verify": "tsx scripts/smoke-verify.ts",
+    "smoke:ui": "tsx scripts/smoke-ui-path.ts",
+    "test": "tsx --test --test-force-exit --test-concurrency=1 src/**/*.test.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "@proofwork/shared": "*",
+    "sharp": "^0.35.5",
+    "viem": "^2.57.16",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.20.5",
+    "typescript": "^5"
+  }
+}
