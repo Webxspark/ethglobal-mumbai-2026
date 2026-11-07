@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "proofwork": {
+      "type": "remote",
+      "url": "https://pfw.alanchris.me/api/mcp",
+      "enabled": true,
+      "headers": {
+        "Authorization": "Bearer pwct_paste_from_owner_pot"
+      }
+    }
+  }
+}

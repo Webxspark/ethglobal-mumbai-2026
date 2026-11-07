@@ -1,0 +1,45 @@
+# One-shot stack: web (:38471) + MCP (:38472 on the compose network).
+#   cp .env.example .env   # fill live keys as needed — never bake into the image
+#   docker compose up --build
+#
+# Tunnel tip: publish only web (default). Browser hits /api/mcp and Next rewrites
+# to service name `mcp`. Uncomment mcp.ports if you need raw :38472 on the host.
+
+services:
+  mcp:
+    build:
+      context: .
+      target: mcp
+    env_file:
+      - .env
+    environment:
+      MCP_PORT: "38472"
+      # Prefer compose DNS for any in-container callers; host URL still fine for local.
+      PROOFWORK_PUBLIC_URL: ${PROOFWORK_PUBLIC_URL:-http://127.0.0.1:38471}
+    # Internal only by default — web proxies via PROOFWORK_MCP_URL=http://mcp:38472
+    expose:
+      - "38472"
+    # Uncomment to expose MCP on the host / tunnel both services:
+    # ports:
+    #   - "38472:38472"
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      target: web
+      args:
+        PROOFWORK_MCP_URL: http://mcp:38472
+    env_file:
+      - .env
+    environment:
+      PROOFWORK_MCP_URL: http://mcp:38472
+      MCP_URL: http://mcp:38472
+      NEXT_PUBLIC_PROOFWORK_MCP_URL: /api/mcp
+      PORT: "38471"
+      HOSTNAME: "0.0.0.0"
+    ports:
+      - "38471:38471"
+    depends_on:
+      - mcp
+    restart: unless-stopped
